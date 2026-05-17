@@ -4,3 +4,4 @@ node_modules/
 *.pptx
 !outputs/**/*.pptx
 outputs/**/assets/
+.agents/skills/github
