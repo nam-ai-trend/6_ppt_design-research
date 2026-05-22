@@ -47,3 +47,14 @@
   3. **GitHub 원격 생성 및 최종 배포 성공**: 깃허브 정책 상 특수문자인 `+`를 대시(`-`)로 정규화한 `nam-ai-trend/6_ppt_design-research` 공개 레포지토리 하위로 `origin`을 설정하고 `git push -u origin main`을 실행하여 원격 배포를 100% 무결성으로 성공시킴!
 - **오늘 완료한 일**: NotebookLM 딥 리서치 및 PPTX 자동 빌드에 이어, 최종 결과물 전체를 GitHub 공개 저장소(`https://github.com/nam-ai-trend/6_ppt_design-research`)에 완전하고 안전하게 배포 완료함.
 - **다음 작업 시 시작해야 할 일(Next Step)**: 사용자의 신규 딥 리서치/PPTX 제작 피드백 수렴 또는 추가적인 레포지토리 관리 및 기능 확장 작업 착수.
+
+### 2026-05-22 23:20 - NotebookLM 기반 딥 리서치 스킬 및 실증 사례 브리핑 완료
+- **진행 내용**:
+  - 사용자의 요청에 따라 신규 탑재된 **NotebookLM MCP 딥 리서치 스킬(`/research`)**의 설계 사상 및 상세 프로세스를 체계적으로 안내함.
+  - 실증 분석 주제인 **"자료조사의 왕 NotebookLM vs 빌드/실행의 신 Claude"**에 대한 팩트, 장단점, 개선 전략 및 시너지 모델을 브리핑함.
+  - 리서치 스킬을 첫 단추로 하여 PPT 자동 생산(`organization_agent`) 및 깃허브 배포(`github`)로 이어지는 3단계 파이프라인의 유기적 흐름을 최종 정리하여 공유함.
+
+### 2026-05-22 23:25 - research 스킬의 저장 폴더 명명 규칙(YYMMDD_{주제}) 업데이트 완료
+- **진행 내용**:
+  - 사용자가 스킬 실행 시 생성되는 결과물 폴더 경로를 일관성 있게 식별할 수 있도록 `.agents/skills/research/SKILL.md` 내에 `outputs/YYMMDD_{주제}` 자동 생성 명명 규칙을 보강 및 명문화함.
+  - 변경 사항을 로컬 Git에 커밋하고 GitHub `nam-ai-trend/6_ppt_design-research` 원격 저장소의 main 브랜치로 정상적으로 최종 푸시 동기화 완료함.
