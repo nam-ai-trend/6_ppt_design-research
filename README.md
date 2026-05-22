@@ -50,10 +50,12 @@ pip install Pillow               # 썸네일 생성
 ```bash
 /research [원하는 발표 주제]
 ```
-*   **작동 모드**: `--mode deep`을 사용해 웹과 드라이브의 방대한 지식 소스를 깊숙이 탐색합니다.
-*   **인사이트 확장**: 안티그래비티 AI가 쿼리를 한/영 다각화하여 시장 규모, 경쟁사 분석, ROI, 실사례, 구체적 행동 방안까지 정밀 추출하여 `outputs/[주제명]/research.md`로 자동 정규화 빌드합니다.
+*   **YYMMDD_{주제} 자동 명명 규칙 및 폴더 개설**:
+    - 리서치 스킬을 기동하면, 현재 시스템 날짜(`YYMMDD` 형태)와 사용자가 입력한 주제의 영문 소문자 키워드(띄어쓰기는 `_`로 대체)를 조합하여 **`outputs/YYMMDD_{주제}`** 형식의 고유 폴더를 자동으로 생성합니다.
+    - **예시**: 오늘이 2026년 5월 22일이고 주제가 "NotebookLM vs Claude"인 경우, 자동으로 `outputs/260522_notebooklm_vs_claude` 폴더를 개설합니다.
+*   **인사이트 확장**: 안티그래비티 AI가 쿼리를 한/영 다각화하여 시장 규모, 경쟁사 분석, ROI, 실사례, 구체적 행동 방안까지 정밀 추출하여 `outputs/YYMMDD_{주제}/research.md`로 자동 정규화 빌드합니다.
 
-*(참고: 만약 이미 준비된 연구 자료가 있다면, `outputs/[주제명]/research.md`를 수동으로 작성하여 직접 기동할 수도 있습니다. 양식은 아래의 [research.md 예시]를 참고하세요.)*
+*(참고: 만약 이미 준비된 연구 자료가 있다면, 해당 규칙에 맞춰 `outputs/YYMMDD_{주제}/research.md` 경로에 수동으로 직접 작성하여 기동할 수도 있습니다. 양식은 아래의 [research.md 예시]를 참고하세요.)*
 
 ---
 
@@ -120,8 +122,8 @@ Fortune 500 기업의 63%가 AI 에이전트 파일럿을 진행 중...
 │           └── scripts/             # 추가 헬퍼 스크립트
 │
 ├── outputs/                         # 생성된 결과물 폴더
-│   └── [주제명]/                    # 예: 260522_notebooklm_vs_claude
-│       ├── research.md              # ✏️ 사용자가 작성하는 슬라이드 구성 파일
+│   └── YYMMDD_{주제}/               # 📌 자동 생성 규칙 적용 폴더 (예: 260522_notebooklm_vs_claude)
+│       ├── research.md              # ✏️ 딥 리서치 결과 보고서 (슬라이드 구성 파일)
 │       ├── STORYBOARD.md            # 자동 생성: 슬라이드 기획안
 │       ├── generate_ppt.js          # 자동 생성: PPT 빌드 스크립트
 │       ├── output.pptx              # 자동 생성: 최종 결과물
@@ -245,9 +247,9 @@ node outputs/[주제명]/generate_ppt.js
 
 ```
 outputs/
-└── 260517_ai_test/
-    ├── research.md        ← 사용자 작성 (입력)
-    ├── STORYBOARD.md      ← Phase 1 자동 생성
+└── YYMMDD_{주제}/         ← 📌 자동 개설되는 고유 경로 (예: 260522_notebooklm_vs_claude)
+    ├── research.md        ← 🔍 Step 1: 리서치 스킬로 자동 추출 (수동 작성 가능)
+    ├── STORYBOARD.md      ← Step 2: Phase 1 자동 생성
     ├── assets/
     │   ├── title.png
     │   ├── slide03.png
