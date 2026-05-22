@@ -1,221 +1,122 @@
-# 🚀 PPT Design Claude Skill
+# 🚀 End-to-End AI Deep Research & Presentation Engine
+> **Powered by Antigravity AI Brain & NotebookLM MCP**
 
-클로드 에이전트를 활용하여 **슬라이드 구성 파일(research.md)만 넣으면 자동으로 PPTX를 생산**해주는 자율형 프레젠테이션 제작 파이프라인입니다.
-
----
-
-## 📦 설치
-
-### 1. 저장소 클론
-
-```bash
-git clone <repo-url>
-cd 1_ppt_design_skill
-```
-
-### 2. 의존성 설치
-
-```bash
-npm install
-```
-
-**주요 의존성:**
-
-| 패키지 | 용도 |
-|--------|------|
-| `pptxgenjs` | PPTX 파일 생성 엔진 |
-| `sharp` | 이미지 처리 (SVG → PNG 래스터라이즈) |
-
-### 3. Python 의존성 (QA용)
-
-```bash
-pip install "markitdown[pptx]"  # PPTX 텍스트 추출
-pip install Pillow               # 썸네일 생성
-```
-
-> LibreOffice(`soffice`)와 Poppler(`pdftoppm`)이 설치되어 있으면 슬라이드를 이미지로 변환한 시각적 QA가 가능합니다.
+본 프로젝트는 AI 기술과 자율 에이전트 아키텍처를 결합하여, **주제 입력 한 번으로 심층 웹 리서치부터 스토리보드 설계, 3D 시각화 에셋 생성, 그리고 무결성 PPTX 슬라이드 빌드와 GitHub 배포까지 단 한 번에 수행하는 초격차 프레젠테이션 자동 생산 시스템**입니다.
 
 ---
 
-## 🎯 사용법
+## 🌟 핵심 파이프라인 (End-to-End Workflow)
 
-### 핵심 원칙: research.md 하나만 준비하면 끝
-
-1. `outputs/[주제명]/` 폴더를 생성합니다.
-2. 그 안에 **`research.md`** 파일을 작성합니다.
-3. 클로드에게 다음과 같이 요청합니다:
-
+```mermaid
+graph TD
+    A[사용자 주제 입력] --> B[NotebookLM Deep Research 스킬]
+    B -->|심층 웹서치 및 다각화 쿼리| C[초정규화 research.md 생성]
+    C --> D[organization_agent 워크플로우 기동]
+    D -->|STORYBOARD.md 자율 설계| E[3D Tech-Editorial 이미지 생성]
+    E -->|generate_ppt.js 자동 빌드| F[node PPTEngine 구동]
+    F -->|3.5MB 무결성 슬라이드 생성| G[output.pptx 빌드 완료]
+    G --> H[github 배포 스킬]
+    H -->|공개 저장소 자동 정규화 생성| I[GitHub push 배포 완료]
 ```
-outputs/[주제명]/research.md를 바탕으로
-[simple-design-ppt] 디자인 스킬을 사용해서 PPT 만들어줘.
-```
 
-### research.md 예시
+---
 
-```markdown
-# AI 에이전트 시장 동향 2026
+## 🛠️ 주요 스킬 및 기능
 
-## 핵심 요약
-- 전 세계 AI 에이전트 시장 규모: 2026년 기준 450억 달러
-- 전년 대비 성장률: 87%
+### 1. 🔍 NotebookLM 딥 리서치 (`/research` 스킬)
+*   **초심층 웹 및 드라이브 서칭**: `--mode deep` 모드를 탑재하여 Google Web & Drive 전반을 종횡무진 탐색합니다.
+*   **쿼리 확장 & 재구성 (Query Expansion)**: 사용자의 원본 쿼리를 안티그래비티 지능으로 분석하여 영어/한국어 다각화 쿼리로 팽창시킵니다.
+*   **시장 조사 및 경쟁 분석 강화**: 비즈니스 필수 레이어인 ROI(투자대비효과), 실질 사례(Case Study), 행동 방안(Action Plan)에 더해 **시장 규모 및 경쟁사 분석(Market Size & Competitors)**을 고정으로 추가 탐색합니다.
+*   **Blueprint 규격화**: 최종 리서치 결과물은 슬라이드 설계 매핑 Blueprint가 포함된 정규화 포맷 `research.md`로 자동 저장됩니다.
 
-## 주요 트렌드
-### 1. 멀티 에이전트 협업
-자율 AI 에이전트들이 서로 협력하여 복잡한 태스크를 분산 처리...
+### 2. 🎨 PPT 자동 생산 워크플로우 (`/organization_agent`)
+*   **스토리보드 자율 설계**: `research.md`를 완벽히 분석하여 `engine.js`의 슬라이드 배치 함수 및 레이아웃과 100% 매칭되는 `STORYBOARD.md`를 자율적으로 생성합니다.
+*   **3D Tech-Editorial 이미지 에셋**: 3D 테크 에디토리얼 및 학술 도해(Academic Style)가 융합된 초고품질의 이미지 에셋 5장을 자율 생성하여 `assets/` 경로에 완벽히 이식합니다.
+*   **전용 빌더 스크립트 작성**: `PPTEngine` 클래스를 동적으로 임포트하여 슬라이드 10장을 오차 없이 그려내는 `generate_ppt.js`를 빌드합니다.
+*   **무결성 PPTX 최종 렌더링**: 로컬 node 엔진을 기동해 약 3.5MB 크기의 고품질 무결성 `output.pptx` 프레젠테이션 파일을 자율 생산합니다.
 
-### 2. 엔터프라이즈 도입 가속
-Fortune 500 기업의 63%가 AI 에이전트 파일럿을 진행 중...
-
-## 결론
-에이전트 AI는 단순 자동화를 넘어 의사결정 보조 도구로 진화 중
-```
+### 3. 🚀 GitHub 자동 배포 (`/github` 스킬)
+*   **로컬 Git 자동화**: 로컬 저장소의 `git init`, `git add .`, `git commit -m "research 및 ppt 연동 완료"`, `main` 브랜치 정리를 원클릭으로 기동합니다.
+*   **특수문자 자동 정규화**: 깃허브 정책 상 생성 불가능한 특수문자(예: `+`)를 대시(`-`)로 스마트하게 자동 치환(`6_ppt_design-research`)하여 에러를 원천 방지합니다.
+*   **공개(Public) 배포 지원**: 조직 및 개인 계정(`nam-ai-trend`) 하위에 공개(Public)로 원격 저장소를 API로 즉시 자동 생성하고 `git push`까지 원스톱으로 마무리합니다.
 
 ---
 
 ## 📂 폴더 구조
 
 ```
-1_ppt_design_skill/
+6_ppt_design_skill  +research/
 │
-├── .agents/                         # 에이전트 정의 폴더
+├── .agents/                         # 에이전트 스킬 및 워크플로우 핵심부
 │   ├── workflows/
-│   │   └── organization_agent.md    # 🔑 PPT 자동 생산 워크플로우
+│   │   └── organization_agent.md    # 🔑 PPT 자동 생산 워크플로우 정의
 │   └── skills/
-│       ├── pptx/                    # PPTX 읽기·편집·QA 스킬
-│       │   ├── SKILL.md             # 스킬 정의 및 가이드
-│       │   └── scripts/             # 썸네일·변환 헬퍼 스크립트
-│       └── simple-design-ppt/       # 디자인 테마 스킬 (Tech-Editorial)
-│           ├── SKILL.md             # 디자인 시스템 전체 규격
-│           ├── engine.js            # PPTEngine 클래스 (슬라이드 생성 엔진)
-│           └── scripts/             # 추가 헬퍼 스크립트
+│       ├── research/                # 🔍 NotebookLM MCP 딥 리서치 스킬
+│       │   ├── SKILL.md             # 리서치 가이드 및 고정 질문 룰
+│       │   └── assets/              # 프롬프트 톤앤매너
+│       ├── simple-design-ppt/       # 🎨 Tech-Editorial 디자인 테마 스킬
+│       │   ├── SKILL.md             # 디자인 시스템 규격 및 매뉴얼
+│       │   └── engine.js            # PPTEngine 클래스 (슬라이드 드로잉 엔진)
+│       └── github/                  # 🚀 GitHub 원격 자동 배포 스킬
+│           ├── SKILL.md             # 배포 스펙 가이드
+│           └── scripts/
+│               └── github_ops.py    # Git 및 GitHub API 배포 파이썬 스크립트
 │
-├── outputs/                         # 생성된 결과물 폴더
-│   └── [주제명]/                    # 예: 260517_ai_test
-│       ├── research.md              # ✏️ 사용자가 작성하는 슬라이드 구성 파일
-│       ├── STORYBOARD.md            # 자동 생성: 슬라이드 기획안
-│       ├── generate_ppt.js          # 자동 생성: PPT 빌드 스크립트
-│       ├── output.pptx              # 자동 생성: 최종 결과물
-│       └── assets/                  # 자동 생성: 이미지 에셋
-│           └── *.png / *.jpg
+├── outputs/                         # 최종 산출물 폴더 (주제별 격리)
+│   └── 260522_notebooklm_vs_claude/ # 예시: NotebookLM vs Claude 분석
+│       ├── research.md              # ✏️ 초정규화 리서치 마크다운 (Blueprint 포함)
+│       ├── STORYBOARD.md            # 📝 슬라이드 10장 구성 기획안
+│       ├── generate_ppt.js          # 💻 PPTX 빌더 구동 스크립트
+│       ├── NotebookLM_vs_Claude_Research.pptx # 🎁 최종 프레젠테이션 파일
+│       └── assets/                  # 🖼️ 3D Tech-Editorial 이미지 에셋들
 │
 ├── package.json
-├── .env
+├── .env                             # Gemini API Key & GITHUB_TOKEN 보관
 └── README.md
 ```
 
 ---
 
-## ⚙️ 워크플로우 상세: `organization_agent` 작동 방식
-
-워크플로우 파일: `.agents/workflows/organization_agent.md`
-
-클로드가 `/organization_agent` 워크플로우를 실행하면, 아래 **4개 Phase**가 순차적으로 자동 진행됩니다.
-
----
-
-### Phase 1 — 데이터 분석 & 스토리보드 자동 작성
-
-`outputs/[주제명]/research.md`를 분석하여 **`STORYBOARD.md`**를 생성합니다.
-
-스토리보드에는 다음이 포함됩니다:
-- **슬라이드 유형**: `engine.js`의 함수명과 매칭 (타이틀, 목차, 섹션, 콘텐츠, KPI, 마감 등)
-- **데이터 매핑**: 제목(25자 이내), 본문, 강조 데이터를 슬라이드별로 추출
-- **이미지 생성 계획**: 각 슬라이드에 적합한 구체적인 이미지 프롬프트 작성
-
-```markdown
-# [프로젝트명] 기획안
-**사용 디자인 스킬**: simple-design-ppt
-**산출물 경로**: outputs/[주제명]/
-
-## 슬라이드 01: AI 에이전트 시장 동향 2026
-- **타입**: addTitleSlide
-- **이미지 프롬프트**: "futuristic AI neural network, 3D render, dark background..."
-- **데이터**: { title: "AI 에이전트 시장 동향", subtitle: "2026 연간 보고서", ... }
-```
-
----
-
-### Phase 2 — 이미지 에셋 자동 생성
-
-`simple-design-ppt` 스킬의 **이미지 생성 3단계 프로토콜**을 따릅니다:
-
-1. **에이전트 내장 `generate_image` 툴** 우선 사용
-2. 쿼터 초과 시 외부 API 폴백으로 전환
-3. 생성된 이미지는 `outputs/[주제명]/assets/`에 저장
-
-**이미지 규격:**
-| 슬라이드 타입 | 규격 | 위치 |
-|-------------|------|------|
-| 타이틀 / 마감 | Bleed (w=4.75", h=5.625") | 우측 절반 전체 |
-| 콘텐츠 (기본형) | 1:1 정사각형 (~4"×4") | 우측 영역 |
-
----
-
-### Phase 3 — `generate_ppt.js` 자동 작성
-
-주제 폴더 내에 **`generate_ppt.js`**를 생성합니다. 이 스크립트는:
-
-- `engine.js`(`PPTEngine` 클래스)를 동적으로 참조: `require('../../.agents/skills/simple-design-ppt/engine')`
-- 스토리보드의 데이터를 슬라이드별 함수 호출로 변환
-- 모든 경로를 `__dirname` 기준으로 처리하여 이식성 확보
-
----
-
-### Phase 4 — 최종 빌드 & QA 검증
-
-```bash
-node outputs/[주제명]/generate_ppt.js
-```
-
-스크립트 실행 후:
-1. `output.pptx` 생성 확인
-2. `pptx` 스킬이 자동 트리거되어 파일 무결성 검토
-3. 콘텐츠 QA (`markitdown`으로 텍스트 추출 검증)
-4. 시각적 QA (슬라이드를 이미지로 변환 후 레이아웃 검토)
-
----
-
 ## 🎨 디자인 시스템: `simple-design-ppt`
 
-**Tech-Editorial & Academic 하이브리드** 스타일. 엔터프라이즈 AI/기술 발표 자료에 최적화.
+**Tech-Editorial & Academic 하이브리드** 스타일로, 엔터프라이즈 AI 및 딥 테크 발표 자료에 최적화된 최정점의 레이아웃을 제공합니다.
 
-### 슬라이드 타입 8종
-
-| # | 타입 | 설명 |
-|---|------|------|
-| 1 | **타이틀** | 좌측 대형 타이틀 + 우측 Bleed 실사 이미지 |
-| 2 | **목차** | 번호 뱃지 + 동적 Y축 센터링 목록 |
-| 3 | **섹션 전환 (Divider)** | 다크 배경(`#1A1A1A`) 전환 슬라이드 |
-| 4 | **콘텐츠 - 기본 1:1 이미지형** | 좌측 텍스트 + 우측 정사각형 이미지 |
-| 5 | **콘텐츠 - 카드형** | 2~5단 카드 그리드 (라이트/다크 혼합) |
-| 6 | **콘텐츠 - 비교/스텝형** | AS-IS vs TO-BE 비교, Step 1→2→3 |
-| 7 | **데이터/KPI형** | 대형 숫자 KPI 블록 + 테이블 |
-| 8 | **마감 (Closing)** | 핵심 메시지 + 연락처 + 우측 이미지 |
-
-### 핵심 디자인 원칙
-
-- **컬러**: 흰(`#FFFFFF`) 배경 기본, 다크 강조(`#18181B`), 블루 액센트(`#2563EB`)
-- **폰트**: `Black Han Sans` (없으면 Arial → Calibri 폴백)
-- **레이아웃**: 슬라이드 크기 10" × 5.625" (16:9)
-- **공통 요소**: 모든 슬라이드에 상단 뱃지 + 하단 구분선 + 페이지 번호 적용
+### 제공 슬라이드 타입 8종
+1.  **Title Slide**: 좌측 대형 타이틀 + 우측 Bleed 실사 3D 에셋 이미지 배치
+2.  **Agenda Slide**: 번호 뱃지 + Y축 자동 센터링 리스트 구조
+3.  **Divider Slide**: 다크 테마(`#18181B`)를 이용한 시각 환기용 섹션 구분
+4.  **Content (Image) Slide**: 좌측 설명 텍스트 + 우측 1:1 정사각형 에셋 이미지
+5.  **Card Layout Slide**: 2~5단 카드 그리드 기반의 메인 텍스트 정보 시각화
+6.  **Comparison Slide**: AS-IS 대 TO-BE의 정밀 비교 및 프로세스 흐름도 시각화
+7.  **Data/KPI Slide**: 대형 숫자 데이터 블록과 연동 테이블 결합 구조
+8.  **Closing Slide**: 핵심 키 비주얼 에셋 + 우측 마무리 이미지 연동
 
 ---
 
-## 📝 출력 예시
+## 📦 실행 및 기동 방법
 
+### 1. 의존성 설치
+```bash
+npm install
 ```
-outputs/
-└── 260517_ai_test/
-    ├── research.md        ← 사용자 작성 (입력)
-    ├── STORYBOARD.md      ← Phase 1 자동 생성
-    ├── assets/
-    │   ├── title.png
-    │   ├── slide03.png
-    │   └── ...
-    ├── generate_ppt.js    ← Phase 3 자동 생성
-    └── output.pptx        ← Phase 4 최종 결과물 ✅
+
+### 2. 딥 리서치 기동 (NotebookLM MCP)
+```bash
+/research "자료조사는 노트북엘엠이 최고라는 팩트와 클로드 바이브코딩 비교분석"
 ```
+*   `outputs/[날짜_주제명]/research.md`가 자동 빌드됩니다.
+
+### 3. PPTX 및 이미지 자동 빌드 기동
+```bash
+/organization_agent outputs/[날짜_주제명]/research.md
+```
+*   `outputs/[날짜_주제명]/` 하위에 `STORYBOARD.md`, 이미지 에셋, `generate_ppt.js`가 자동 생성되며 `output.pptx`가 렌더링됩니다.
+
+### 4. GitHub 자동 배포 기동
+```bash
+/github 6_ppt_design+research
+```
+*   `6_ppt_design-research` 공개 저장소 생성 및 푸시가 단숨에 완료됩니다.
 
 ---
-
-**Powered by Antigravity Design Team**
+**Created & Maintained by Antigravity & NAM AI TREND**
