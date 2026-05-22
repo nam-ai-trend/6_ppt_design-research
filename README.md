@@ -1,9 +1,8 @@
 # 🚀 PPT Design Claude Skill
-> **Enhanced with NotebookLM Deep Research & Auto-Deploy Pipeline**
 
-클로드 에이전트를 활용하여 **슬라이드 구성 파일(research.md)만 넣으면 자동으로 PPTX를 생산**해주는 자율형 프레젠테이션 제작 파이프라인입니다. 
+클로드 에이전트를 활용하여 **슬라이드 구성 파일(research.md)만 넣으면 자동으로 PPTX를 생산**해주는 자율형 프레젠테이션 제작 파이프라인입니다.
 
-이제 **NotebookLM MCP 기반의 딥 리서치 스킬**과 **GitHub 공개 배포 스킬**이 추가되어, 주제 입력 한 번으로 웹 리서치부터 배포까지 원스톱으로 처리할 수 있습니다.
+> **NEW 🚀**: 이제 **NotebookLM MCP 기반의 딥 리서치 스킬(`/research`)**과 **GitHub 원클릭 공개 배포 스킬(`/github`)**이 완전히 결합되어, 주제 한 줄만 입력하면 리서치, PPT 생성, 저장소 생성 및 푸시까지 완벽히 자동화됩니다!
 
 ---
 
@@ -13,7 +12,7 @@
 
 ```bash
 git clone <repo-url>
-cd 6_ppt_design_skill
+cd 1_ppt_design_skill
 ```
 
 ### 2. 의존성 설치
@@ -29,7 +28,7 @@ npm install
 | `pptxgenjs` | PPTX 파일 생성 엔진 |
 | `sharp` | 이미지 처리 (SVG → PNG 래스터라이즈) |
 
-### 3. Python 의존성 (QA 및 GitHub 배포용)
+### 3. Python 의존성 (QA용)
 
 ```bash
 pip install "markitdown[pptx]"  # PPTX 텍스트 추출
@@ -42,18 +41,8 @@ pip install Pillow               # 썸네일 생성
 
 ## 🎯 사용법
 
-### 핵심 원칙: research.md 하나만 준비하면 끝 (또는 주제 하나로 리서치 자동화)
+### 핵심 원칙: research.md 하나만 준비하면 끝
 
-기본적으로는 작성된 `research.md`를 이용하거나, 혹은 신규 도입된 **NotebookLM 딥 리서치 스킬**을 사용하여 원클릭으로 리서치 보고서를 생성할 수 있습니다.
-
-#### 옵션 A) NotebookLM 딥 리서치 자동화 (신규 🚀)
-클로드에게 다음과 같이 요청하여 심층 웹 조사를 통해 `research.md`를 자동 생산합니다:
-```bash
-/research [원하는 발표 주제]
-```
-*   **작동 방식**: `--mode deep` 기반으로 안티그래비티 지능이 쿼리를 영어/한국어로 다각화 팽창(Query Expansion)시키며, **시장 규모 및 경쟁사 분석(Market Size & Competitors)**, ROI, 실사례, 행동 방안 레이어를 고정 탑재하여 심층 조사 후 Blueprint 규격의 `research.md`를 만듭니다.
-
-#### 옵션 B) 직접 작성한 research.md 기반 기동
 1. `outputs/[주제명]/` 폴더를 생성합니다.
 2. 그 안에 **`research.md`** 파일을 작성합니다.
 3. 클로드에게 다음과 같이 요청합니다:
@@ -62,6 +51,17 @@ pip install Pillow               # 썸네일 생성
 outputs/[주제명]/research.md를 바탕으로
 [simple-design-ppt] 디자인 스킬을 사용해서 PPT 만들어줘.
 ```
+
+### 🔥 신규 기능: NotebookLM 딥 리서치 자동화 (`/research` 스킬)
+만약 직접 `research.md`를 작성하기 귀찮거나 최신 정보를 심층 탐색해야 한다면, 단 한 줄의 명령어로 리서치와 PPT 설계를 자율 수행할 수 있습니다.
+```
+/research [원하는 탐색 주제]
+```
+*   **작동 원리**: `--mode deep`을 활용해 Google Web 및 Google Drive를 전방위로 심층 검색합니다.
+*   **쿼리 확장 (Query Expansion)**: 사용자의 오리지널 쿼리를 안티그래비티 지능으로 분석하여 한국어/영어 다각화 쿼리로 자동 팽창시킵니다.
+*   **비즈니스 고정 질문 적용**: ROI(투자 대비 효과), 실질 사례(Case Study), 행동 방안(Action Plan)뿐만 아니라 **시장 규모 및 경쟁사 분석(Market Size & Competitors)**까지 심층 레이어를 고정으로 추가 탐색하여 Blueprint 규격의 `research.md`로 자동 정규화 저장합니다.
+
+---
 
 ### research.md 예시
 
@@ -88,9 +88,9 @@ Fortune 500 기업의 63%가 AI 에이전트 파일럿을 진행 중...
 ## 📂 폴더 구조
 
 ```
-6_ppt_design_skill  +research/
+1_ppt_design_skill/
 │
-├── .agents/                         # 에이전트 정의 및 자동화 스킬
+├── .agents/                         # 에이전트 정의 폴더
 │   ├── workflows/
 │   │   └── organization_agent.md    # 🔑 PPT 자동 생산 워크플로우
 │   └── skills/
@@ -98,26 +98,27 @@ Fortune 500 기업의 63%가 AI 에이전트 파일럿을 진행 중...
 │       │   ├── SKILL.md             # 스킬 정의 및 가이드
 │       │   └── scripts/             # 썸네일·변환 헬퍼 스크립트
 │       ├── research/                # 🔍 NotebookLM MCP 딥 리서치 스킬
-│       │   └── SKILL.md             # 리서치 5대 원칙 및 4대 고정 질문 룰
+│       │   └── SKILL.md             # 고정 질문 및 초정규화 룰
 │       ├── simple-design-ppt/       # 디자인 테마 스킬 (Tech-Editorial)
 │       │   ├── SKILL.md             # 디자인 시스템 전체 규격
 │       │   ├── engine.js            # PPTEngine 클래스 (슬라이드 생성 엔진)
 │       │   └── scripts/             # 추가 헬퍼 스크립트
 │       └── github/                  # 🚀 GitHub 원격 자동 배포 스킬
-│           ├── SKILL.md             # 배포 가이드
+│           ├── SKILL.md             # 공개 배포 가이드
 │           └── scripts/
-│               └── github_ops.py    # Git 및 GitHub API 연동 배포 스크립트
+│               └── github_ops.py    # 깃허브 API 연동 배포 스크립트
 │
 ├── outputs/                         # 생성된 결과물 폴더
 │   └── [주제명]/                    # 예: 260522_notebooklm_vs_claude
-│       ├── research.md              # ✏️ 슬라이드 구성 마크다운 파일
+│       ├── research.md              # ✏️ 사용자가 작성하는 슬라이드 구성 파일
 │       ├── STORYBOARD.md            # 자동 생성: 슬라이드 기획안
 │       ├── generate_ppt.js          # 자동 생성: PPT 빌드 스크립트
 │       ├── output.pptx              # 자동 생성: 최종 결과물
-│       └── assets/                  # 자동 생성: 이미지 에셋 (*.png)
+│       └── assets/                  # 자동 생성: 이미지 에셋
+│           └── *.png / *.jpg
 │
 ├── package.json
-├── .env                             # Gemini API Key & GITHUB_TOKEN
+├── .env
 └── README.md
 ```
 
@@ -194,7 +195,7 @@ node outputs/[주제명]/generate_ppt.js
 ---
 
 ## 🚀 추가 스킬: GitHub 원클릭 배포 (`/github`)
-빌드가 완료된 프레젠테이션과 자료 전체를 GitHub 원격 저장소에 즉시 업로드합니다.
+빌드가 완료된 프레젠테이션과 자료 전체를 GitHub 원격 저장소에 즉시 업로드하고 배포를 끝마칩니다.
 ```bash
 /github [원하는 저장소 이름]
 ```
@@ -233,8 +234,8 @@ node outputs/[주제명]/generate_ppt.js
 
 ```
 outputs/
-└── 260522_notebooklm_vs_claude/
-    ├── research.md        ← 사용자 작성 또는 NotebookLM 딥리서치 (입력)
+└── 260517_ai_test/
+    ├── research.md        ← 사용자 작성 (입력)
     ├── STORYBOARD.md      ← Phase 1 자동 생성
     ├── assets/
     │   ├── title.png
@@ -246,4 +247,4 @@ outputs/
 
 ---
 
-**Powered by Antigravity Design Team & NAM AI TREND**
+**Powered by Antigravity Design Team**
