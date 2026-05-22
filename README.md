@@ -99,14 +99,10 @@ Fortune 500 기업의 63%가 AI 에이전트 파일럿을 진행 중...
 │       │   └── scripts/             # 썸네일·변환 헬퍼 스크립트
 │       ├── research/                # 🔍 NotebookLM MCP 딥 리서치 스킬
 │       │   └── SKILL.md             # 고정 질문 및 초정규화 룰
-│       ├── simple-design-ppt/       # 디자인 테마 스킬 (Tech-Editorial)
-│       │   ├── SKILL.md             # 디자인 시스템 전체 규격
-│       │   ├── engine.js            # PPTEngine 클래스 (슬라이드 생성 엔진)
-│       │   └── scripts/             # 추가 헬퍼 스크립트
-│       └── github/                  # 🚀 GitHub 원격 자동 배포 스킬
-│           ├── SKILL.md             # 공개 배포 가이드
-│           └── scripts/
-│               └── github_ops.py    # 깃허브 API 연동 배포 스크립트
+│       └── simple-design-ppt/       # 디자인 테마 스킬 (Tech-Editorial)
+│           ├── SKILL.md             # 디자인 시스템 전체 규격
+│           ├── engine.js            # PPTEngine 클래스 (슬라이드 생성 엔진)
+│           └── scripts/             # 추가 헬퍼 스크립트
 │
 ├── outputs/                         # 생성된 결과물 폴더
 │   └── [주제명]/                    # 예: 260522_notebooklm_vs_claude
