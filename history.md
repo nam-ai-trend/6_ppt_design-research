@@ -58,3 +58,8 @@
 - **진행 내용**:
   - 사용자가 스킬 실행 시 생성되는 결과물 폴더 경로를 일관성 있게 식별할 수 있도록 `.agents/skills/research/SKILL.md` 내에 `outputs/YYMMDD_{주제}` 자동 생성 명명 규칙을 보강 및 명문화함.
   - 변경 사항을 로컬 Git에 커밋하고 GitHub `nam-ai-trend/6_ppt_design-research` 원격 저장소의 main 브랜치로 정상적으로 최종 푸시 동기화 완료함.
+
+### 2026-05-24 08:50 - .env 파일 내 불필요한 GEMINI_API_KEY 제거 완료
+- **진행 내용**:
+  - 프로젝트 내 이미지 생성 및 PPT 빌드가 안티그래비티 자율 및 NotebookLM MCP(세션 로그인) 기반으로 동작하여 `GEMINI_API_KEY`가 전혀 불필요함을 검증 및 alignment 함.
+  - 사용자의 요청에 따라 `.env` 파일에서 `GEMINI_API_KEY` 관련 환경변수 선언 및 주석 라인을 무결하게 제거 완료함.
